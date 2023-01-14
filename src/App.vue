@@ -1,12 +1,15 @@
 <template>
-  
+  <div id="app">
+    <clock/>
+  </div>
 </template>
 
 <script>
-
+import clock from "@/components/clock.vue"
 export default {
-  name: 'App',
+  name: '#app',
   components: {
+    clock
   }
 }
 </script>
