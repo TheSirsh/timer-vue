@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <clock/>
+    <date/>
   </div>
 </template>
 
 <script>
 import clock from "@/components/clock.vue"
+import date from "@/components/date.vue"
 export default {
   name: '#app',
   components: {
-    clock
+    clock, date
   }
 }
 </script>
