@@ -1,5 +1,5 @@
 <template>
-  <p>
+  <p class="date">
     {{ months[curMonth] }}, {{ daysName[curDay] }} {{ curDateNum }}
   </p>
 </template>
@@ -33,3 +33,11 @@ export default {
   }
 }
 </script>
+
+<style>
+  .date {
+    min-height: calc(100vw / 36.57);
+    font-size: calc(100vw / 42.67);
+    margin-bottom: calc(100vw / 51.2);
+  }
+</style>
