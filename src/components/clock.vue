@@ -36,20 +36,10 @@
 
 <style scoped>
   .clock {
-    background-color: black;
-    font-family: "alarm clock";
-    font-size: 3vw;
-    border-radius: 1vw;
-    padding: 1vw;
-    color: #fff;
-    text-shadow:
-        0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff,
-        0 0 42px #0fa,
-        0 0 82px #0fa,
-        0 0 92px #0fa,
-        0 0 102px #0fa,
-        0 0 151px #0fa;
+    min-height: calc(100vw / 8.26);
+    margin-bottom: calc(100vw / 102.4);
+    font-family: 'Arial-MT';
+    font-size: calc(100vw / 10.24);
+    letter-spacing: -4px; 
   }
 </style>
