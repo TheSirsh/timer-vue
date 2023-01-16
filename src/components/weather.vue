@@ -1,6 +1,9 @@
 <template>
   <div class="weather">
-    <input type="text" class="city" />
+    <input type="text" class="city" placeholder="Saint Petersburg"
+      v-model="city"
+      v-on:change="changeCity"
+    />
     <i class="weather-icon owf"
       v-bind:class="iconClass"
     ></i>
@@ -32,22 +35,26 @@
           wind: {
             speed: Number
           }
-        }
+        },
+        city: ""
       }
     },
     computed: {
       iconClass: function() {
         return "owf-" + this.weatherData.weather[0].id
-        
+      },
+      changeCity: function() {
+        let url = "https://api.openweathermap.org/data/2.5/weather?q=" + this.city + "&lang=en&appid=a930528912396a5ecf6b0001ff49f152&units=metric"
+        fetch(url)
+          .then(response => response.json())
+          .then(json => { this.weatherData = json })
       }
     },
     mounted() {
       fetch('https://api.openweathermap.org/data/2.5/weather?q=Saint%20Petersburg&lang=en&appid=a930528912396a5ecf6b0001ff49f152&units=metric')
         .then(response => response.json())
-        .then(json => {
-          this.weatherData = json
-        })
-    }
+        .then(json => { this.weatherData = json })
+    },
   }
 </script>
 
@@ -70,6 +77,29 @@
     margin-top: calc(100vw / (-102.4));
   }
 
+  .city {
+    width: calc(100vw / 6.02);
+    height: calc(100vw / 30.11);
+    padding: calc(100vw / 204.8);
+    font-size: calc(100vw / 51.2);
+    line-height: calc(100vw / 42.67);
+    color: #fff;  
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+  }
+
+  .city::placeholder {  
+    font-size: calc(100vw / 51.2);
+    color: #fff;
+    opacity: .6;
+  }
+
+  .weather-icon {
+    font-size: calc(100vw / 23.27);
+  }
+
   .description-container {
     display: flex;
     flex-wrap: wrap;
@@ -78,7 +108,4 @@
     column-gap: calc(100vw / 85.3);
   }
 
-  .weather-icon {
-    font-size: calc(100vw / 23.27);
-  }
 </style>>

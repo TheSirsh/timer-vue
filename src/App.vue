@@ -19,12 +19,23 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-width: 480px;
+    min-height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    font-size: calc(100vw / 64);
+    color: #fff;
+    text-align: center;
+    background: url("./assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    transition: background-image 1s ease-in-out;
+    overflow: hidden;
+  }
 </style>
