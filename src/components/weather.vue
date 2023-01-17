@@ -4,16 +4,23 @@
       v-model="city"
       v-on:change="changeCity"
     />
-    <i class="weather-icon owf"
-      v-bind:class="iconClass"
-    ></i>
-    <div class="weather-error"></div>
-    <div class="description-container">
-      <span class="temperature"> {{ weatherData.main.temp }} °C</span>
-      <span class="weather-description"> {{ weatherData.weather[0].description }} </span>
+    <div class="weather-error" v-if="err">City is not defined!</div>
+    <div v-else>
+        <i class="weather-icon owf" v-bind:class="iconClass"></i>
+        <div class="description-container"
+        >
+          <span class="temperature"> {{ weatherData.main.temp }} °C</span>
+          <span class="weather-description"> {{ weatherData.weather[0].description }} </span>
+        </div>
+        <div class="wind"
+        >Wind speed: {{ weatherData.wind.speed }} m/s</div>
+        <div class="humidity"
+        >Humidity: {{ weatherData.main.humidity }}%</div>
     </div>
-    <div class="wind">Wind speed: {{ weatherData.wind.speed }} m/s</div>
-    <div class="humidity">Humidity: {{ weatherData.main.humidity }}%</div>
+
+
+
+
   </div>
 </template>
 
@@ -36,19 +43,27 @@
             speed: Number
           }
         },
-        city: ""
+        city: "",
+        err: false,
       }
     },
     computed: {
-      iconClass: function() {
-        return "owf-" + this.weatherData.weather[0].id
-      },
       changeCity: function() {
         let url = "https://api.openweathermap.org/data/2.5/weather?q=" + this.city + "&lang=en&appid=a930528912396a5ecf6b0001ff49f152&units=metric"
         fetch(url)
-          .then(response => response.json())
-          .then(json => { this.weatherData = json })
-      }
+          .then(response => {
+            if (response.ok){
+              response.json().then(json => { this.weatherData = json })
+              this.err = false
+            } else {
+              this.err = true
+            }
+          })
+      },
+      iconClass: function() {
+        if (this.err === false)
+        {return "owf-" + this.weatherData.weather[0].id}
+      },
     },
     mounted() {
       fetch('https://api.openweathermap.org/data/2.5/weather?q=Saint%20Petersburg&lang=en&appid=a930528912396a5ecf6b0001ff49f152&units=metric')
