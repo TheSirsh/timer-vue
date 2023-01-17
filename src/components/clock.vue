@@ -9,12 +9,13 @@
     name: "Clock",
     data() {
       return {
-          curHour: new Date().getHours(),
-          curMin: new Date().getMinutes(),
-          curSec: new Date().getSeconds(),
+          curHour: Number,
+          curMin: Number,
+          curSec: Number,
       }
     },
     mounted() {
+      this.setTime();
       setInterval(() => this.setTime(), 500);
     },
     methods: {

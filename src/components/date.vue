@@ -9,15 +9,15 @@ export default {
   name: "Date",
   data() {
     return {
-      day: new Date().getDate(),
       months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"],
       daysName: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      curMonth: new Date().getMonth(),
-      curDay: new Date().getDay(),
-      curDateNum: new Date().getDate(),
+      curMonth: Number,
+      curDay: Number,
+      curDateNum: Number,
     }
   },
     mounted() {
+      this.setDate()
       setInterval(() => this.setDate(), 500);
     },
   methods: {
