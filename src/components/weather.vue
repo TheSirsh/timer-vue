@@ -1,26 +1,19 @@
 <template>
-  <div class="weather">
+  <div class="weather-block">
     <input type="text" class="city" placeholder="Saint Petersburg"
       v-model="city"
       v-on:change="changeCity"
     />
     <div class="weather-error" v-if="err">City is not defined!</div>
-    <div v-else>
+    <div class="weather" v-else>
         <i class="weather-icon owf" v-bind:class="iconClass"></i>
-        <div class="description-container"
-        >
+        <div class="description-container">
           <span class="temperature"> {{ weatherData.main.temp }} °C</span>
           <span class="weather-description"> {{ weatherData.weather[0].description }} </span>
         </div>
-        <div class="wind"
-        >Wind speed: {{ weatherData.wind.speed }} m/s</div>
-        <div class="humidity"
-        >Humidity: {{ weatherData.main.humidity }}%</div>
+        <div class="wind">Wind speed: {{ weatherData.wind.speed }} m/s</div>
+        <div class="humidity">Humidity: {{ weatherData.main.humidity }}%</div>
     </div>
-
-
-
-
   </div>
 </template>
 
@@ -61,8 +54,7 @@
           })
       },
       iconClass: function() {
-        if (this.err === false)
-        {return "owf-" + this.weatherData.weather[0].id}
+        return "owf-" + this.weatherData.weather[0].id
       },
     },
     mounted() {
@@ -76,10 +68,9 @@
 <style scoped>
   @import url("../assets/css/owfont-regular.css");
 
-  .weather {
+  .weather-block {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-start;
     row-gap: calc(100vw / 204.8);
     width: calc(100vw / 5.69);
@@ -88,8 +79,20 @@
     font-size: calc(100vw / 85);
   }
 
+  .weather {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    row-gap: calc(100vw / 204.8);
+    width: calc(100vw / 5.69);
+    min-height: 100px;  
+    text-align: left;
+    font-size: calc(100vw / 85);
+  }
+
   .weather-error {
-    margin-top: calc(100vw / (-102.4));
+    margin-top: 0;
   }
 
   .city {
