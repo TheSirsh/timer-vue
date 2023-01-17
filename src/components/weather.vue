@@ -108,4 +108,4 @@
     column-gap: calc(100vw / 85.3);
   }
 
-</style>>
+</style>

@@ -3,6 +3,7 @@
     <weather/>
     <clock/>
     <date/>
+    <greetings/>
   </div>
 </template>
 
@@ -10,10 +11,12 @@
 import weather from "@/components/weather.vue"
 import clock from "@/components/clock.vue"
 import date from "@/components/date.vue"
+import greetings from "@/components/greetings.vue"
+
 export default {
   name: '#app',
   components: {
-    weather, clock, date
+    weather, clock, date, greetings
   }
 }
 </script>
