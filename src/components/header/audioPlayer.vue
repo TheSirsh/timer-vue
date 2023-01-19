@@ -6,6 +6,11 @@
       ></button>
       <button class="play player-icon"
         v-on:click="playTrack"
+        v-if="!isPlay"
+      ></button>
+      <button class="pause player-icon"
+        v-on:click="pause"
+        v-else
       ></button>
       <button class="play-next player-icon"
         v-on:click="nextTrack"
@@ -26,25 +31,33 @@ export default {
       playListData: [],
       playNum: 0,
       track: new Audio(),
+      isPlay: false,
     }
   },
   components: {
     trackList, playListData,
   },
-  computed: {
+  methods: {
     playTrack: function() {
       this.track.src = playListData[this.playNum].src;
       this.track.play();
+      this.isPlay = true;
     },
-  },
-  methods: {
+    pause: function() {
+      this.track.pause();
+      this.isPlay = false;
+    },
     nextTrack: function() {
       this.playNum = (this.playNum === playListData.length - 1) ? (this.playNum = 0) : (this.playNum = this.playNum + 1);
-      this.playTrack;
+      this.track.currentTime = 0;
+      this.playTrack();
+      this.isPlay = true;
     },
     prevTrack: function() {
       this.playNum = (this.playNum === 0) ? (this.playNum = playListData.length - 1) : (this.playNum = this.playNum - 1);
-      this.playTrack;
+      this.track.currentTime = 0;
+      this.playTrack();
+      this.isPlay = true;
     }
   }
 }
@@ -83,10 +96,14 @@ export default {
     transform: scale(1.1);
   }
 
-  .play {
+  .play,
+  .pause {
     width: calc(100vw / 25.6);
     height: calc(100vw / 25.6);
     background-size: calc(100vw / 25.6) calc(100vw / 25.6);
+  }
+
+  .play {
     background-image: url("../../assets/svg/play.svg");
   }
 
