@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <weather/>
+    <upperSection/>
     <clock/>
     <date/>
     <greetings/>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import weather from "@/components/weather.vue"
+import upperSection from "@/components/header/upperSection.vue"
 import clock from "@/components/clock.vue"
 import date from "@/components/date.vue"
 import greetings from "@/components/greetings.vue"
@@ -16,7 +16,7 @@ import greetings from "@/components/greetings.vue"
 export default {
   name: '#app',
   components: {
-    weather, clock, date, greetings
+    upperSection, clock, date, greetings
   }
 }
 </script>
