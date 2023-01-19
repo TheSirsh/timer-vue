@@ -6,8 +6,8 @@
         v-on:click="playTrack"
       ></button>
       <button class="play-next player-icon"></button>
-      <trackList/>
     </div>
+      <trackList/>
   </div>
 </template>
 
