@@ -1,23 +1,34 @@
 <template>
   <ol class="play-list">
     <li class="playItem"
-    v-for="track in trackList" :key="track.title">
-      {{track.title}}
+    v-for="track in playList" :key="track.title">
+      {{track.title}} {{trackLength(track.duration)}}
     </li>
   </ol>
   
 </template>
 
 <script>
-import playList from "@/assets/json/playList.json"
+import playListData from "@/assets/json/playListData.js";
 
 export default {
   name: "trackList",
   data() {
     return {
-      trackList: playList
+      playList: playListData,
+      dur: "",
     }
   },
+  components: {
+    playListData,
+  },
+  methods: {
+    trackLength(dur) {
+      const min = Math.floor(dur / 60);
+      const sec = dur - min * 60;
+      return (sec < 10) ? (min + ":0" + sec) : (dur =  min + ":" + sec);
+    }
+  }
 }
 </script>
 

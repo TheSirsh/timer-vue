@@ -1,23 +1,51 @@
 <template>
   <div class="player">
     <div class="player-controls">
-      <button class="play-prev player-icon"></button>
+      <button class="play-prev player-icon"
+        v-on:click="prevTrack"
+      ></button>
       <button class="play player-icon"
         v-on:click="playTrack"
       ></button>
-      <button class="play-next player-icon"></button>
+      <button class="play-next player-icon"
+        v-on:click="nextTrack"
+      ></button>
     </div>
       <trackList/>
   </div>
 </template>
 
 <script>
-import trackList from "@/components/header/trackList.vue"
+import trackList from "@/components/header/trackList.vue";
+import { default as playListData } from "@/assets/json/playListData.js";
 
 export default {
   name: "audioplayer",
+  data() {
+    return {
+      playListData: [],
+      playNum: 0,
+      track: new Audio(),
+    }
+  },
   components: {
-    trackList
+    trackList, playListData,
+  },
+  computed: {
+    playTrack: function() {
+      this.track.src = playListData[this.playNum].src;
+      this.track.play();
+    },
+  },
+  methods: {
+    nextTrack: function() {
+      this.playNum = (this.playNum === playListData.length - 1) ? (this.playNum = 0) : (this.playNum = this.playNum + 1);
+      this.playTrack;
+    },
+    prevTrack: function() {
+      this.playNum = (this.playNum === 0) ? (this.playNum = playListData.length - 1) : (this.playNum = this.playNum - 1);
+      this.playTrack;
+    }
   }
 }
 </script>
