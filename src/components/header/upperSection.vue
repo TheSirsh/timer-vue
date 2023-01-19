@@ -1,16 +1,18 @@
 <template>
   <header class="header">
+    <player/>
     <weather/>
   </header>
 </template>
 
 <script>
   import weather from "@/components/weather.vue"
+  import player from "@/components/header/audioPlayer.vue"
   
   export default {
     name: "UpperSection",
     components: {
-      weather
+      player, weather
     }
   }
 
