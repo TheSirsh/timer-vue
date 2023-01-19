@@ -2,15 +2,23 @@
   <div class="player">
     <div class="player-controls">
       <button class="play-prev player-icon"></button>
-      <button class="play player-icon"></button>
+      <button class="play player-icon"
+        v-on:click="playTrack"
+      ></button>
       <button class="play-next player-icon"></button>
+      <trackList/>
     </div>
   </div>
 </template>
 
 <script>
+import trackList from "@/components/header/trackList.vue"
+
 export default {
-  name: "audioplayer"
+  name: "audioplayer",
+  components: {
+    trackList
+  }
 }
 </script>
 
@@ -65,5 +73,4 @@ export default {
   .play-next {
     background-image: url("../../assets/svg/play-next.svg");
   }
-
 </style>
