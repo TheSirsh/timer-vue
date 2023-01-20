@@ -35,12 +35,12 @@ export default {
 <style>
   .play-list {
     text-align: left;
+    padding-left: 2vw;
   }
 
   .playItem {
     position: relative;
     padding: calc(100vw / 204.8);
-    padding-left: calc(100vw / 51.2);
     list-style: none;
     opacity: .8;
     cursor: pointer;

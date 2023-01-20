@@ -26,8 +26,8 @@
   align-items: flex-start;
   width: 100%;
   height: 30vh;
-  max-height: 220px;  
-  padding: 1vw;
+  max-height: 220px;
+  padding: 0.5vw 
 }
 
 </style>

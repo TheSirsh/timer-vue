@@ -38,6 +38,6 @@ export default {
   .date {
     min-height: calc(100vw / 36.57);
     font-size: calc(100vw / 42.67);
-    margin-bottom: calc(100vw / 51.2);
+    margin: 0.5vw auto;
   }
 </style>

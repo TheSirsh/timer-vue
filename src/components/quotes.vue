@@ -52,8 +52,8 @@ export default {
     align-items: center;
     width: 60%;
     height: 30vh;
-    min-height: calc(100vw / 6.4);
-    padding: calc(100vw / 51.2);
+    padding: 0.5vw;
+    margin: 0px auto;
   }
 
   .change-quote {

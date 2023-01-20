@@ -38,7 +38,7 @@
 <style scoped>
   .clock {
     min-height: calc(100vw / 8.26);
-    margin-bottom: calc(100vw / 102.4);
+    margin-bottom: 0.5vw;
     font-family: 'Arial-MT';
     font-size: calc(100vw / 10.24);
     letter-spacing: -4px; 

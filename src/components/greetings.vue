@@ -33,18 +33,17 @@ export default {
 
 <style>
   .greeting-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vw / 21.33);
-  width: 100vw;
-  font-size: calc(100vw / 25.6);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    font-size: calc(100vw / 25.6);
   }
 
   .greeting {
     flex: 1;  
-    padding: calc(100vw / 102.4);
+    padding: 0.5vw;
     text-align: right;
   }
 
@@ -52,7 +51,7 @@ export default {
     flex: 1;
     width: auto;
     max-width: 50%;
-    padding: calc(100vw / 102.4);
+    padding: 0.5vw;
     font-size: calc(100vw / 25.6);
     text-align: left;
     color: #fff;
