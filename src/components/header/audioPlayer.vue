@@ -16,6 +16,7 @@
         v-on:click="nextTrack"
       ></button>
     </div>
+      <audioControl :playNum="playNum"/>
       <trackList/>
   </div>
 </template>
@@ -23,6 +24,7 @@
 <script>
 import trackList from "@/components/header/trackList.vue";
 import { default as playListData } from "@/assets/json/playListData.js";
+import audioControl from "@/components/header/progressBar.vue"
 
 export default {
   name: "audioplayer",
@@ -35,7 +37,7 @@ export default {
     }
   },
   components: {
-    trackList, playListData,
+    trackList, playListData, audioControl
   },
   methods: {
     playTrack: function() {
