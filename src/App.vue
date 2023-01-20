@@ -4,6 +4,7 @@
     <clock/>
     <date/>
     <greetings/>
+    <quotes/>
   </div>
 </template>
 
@@ -12,11 +13,12 @@ import upperSection from "@/components/header/upperSection.vue"
 import clock from "@/components/clock.vue"
 import date from "@/components/date.vue"
 import greetings from "@/components/greetings.vue"
+import quotes from "@/components/quotes.vue"
 
 export default {
   name: '#app',
   components: {
-    upperSection, clock, date, greetings
+    upperSection, clock, date, greetings, quotes
   }
 }
 </script>
