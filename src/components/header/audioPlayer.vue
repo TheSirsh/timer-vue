@@ -22,7 +22,9 @@
         @newVol="updVol"
         @newCurTime="newTime"
       />
-      <trackList/>
+      <trackList
+        :playNum="playNum"
+      />
   </div>
 </template>
 

@@ -1,7 +1,8 @@
 <template>
   <ol class="play-list">
     <li class="playItem"
-    v-for="track in playList" :key="track.title">
+    v-for="track in playList" :key="track.title"
+    v-bind:class="{active: track.index === playNum}">
       {{track.title}} {{trackLength(track.duration)}}
     </li>
   </ol>
@@ -13,6 +14,9 @@ import playListData from "@/assets/json/playListData.js";
 
 export default {
   name: "trackList",
+  props: {
+    playNum: Number,
+  },
   data() {
     return {
       playList: playListData,
@@ -23,11 +27,11 @@ export default {
     playListData,
   },
   methods: {
-    trackLength(dur) {
+    trackLength: function(dur) {
       const min = Math.floor(dur / 60);
       const sec = dur - min * 60;
       return (sec < 10) ? (min + ":0" + sec) : (dur =  min + ":" + sec);
-    }
+    },
   }
 }
 </script>
@@ -42,7 +46,7 @@ export default {
     position: relative;
     padding: calc(100vw / 204.8);
     list-style: none;
-    opacity: .8;
+    opacity: .5;
     cursor: pointer;
     transition: .3s;
     z-index: 1;
@@ -57,5 +61,9 @@ export default {
     left: 0;
     top: 2px;
     font-weight: 900;
+  }
+
+  .active {
+    opacity: 1;
   }
 </style>
