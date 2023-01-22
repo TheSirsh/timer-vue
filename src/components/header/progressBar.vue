@@ -3,7 +3,9 @@
     <span class="trackName">{{playList[playNum].title}}</span>
   </div>
   <div class="audioProgressBarBg">
-    <div class="audioProgressBar"></div>
+    <div class="audioProgressBar"
+      :style="{width: setAudioProgress(curTime)}"
+    ></div>
   </div>
   <div class="trackControl">
     <span class="trackProgress">
@@ -41,6 +43,9 @@ export default {
       const min = Math.floor(dur / 60);
       const sec = dur - min * 60;
       return (sec < 10) ? (min + ":0" + sec) : (dur =  min + ":" + sec);
+    },
+    setAudioProgress: function(time) {
+      return time / playList[this.playNum].duration * 100 + "%"
     }
   },
 }
