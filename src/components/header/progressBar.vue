@@ -65,4 +65,41 @@ export default {
     height: 10px;
     background-color: #C5B358;
   }
+
+  .trackControl {
+    width: calc(100vw / 6);
+    display: flex;
+    font-size: calc(100vw / 85.3);
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .muteButton {
+    width: calc(100vw / 70);
+    height: calc(100vw / 70);
+    background-size: calc(100vw / 70) calc(100vw / 70);
+    cursor: pointer;
+  }
+
+  .on {
+    background-image: url("../../assets/svg/volume.svg");
+  }
+
+  .off {
+    background-image: url("../../assets/svg/mute.svg");
+  }
+
+  .volumeProgressBarBg {
+    width: calc(100vw / 15);
+    margin-bottom: 5px;
+    height: 5px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .volumeProgressBar {
+    width: 0%;
+    height: 5px;
+    background-color: #C5B358;
+  }
 </style>
