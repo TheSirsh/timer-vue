@@ -11,9 +11,21 @@
     <span class="trackProgress">
       {{convertTime(curTime)}} / {{convertTime(playList[playNum].duration)}}
     </span>
-    <div class="muteButton on"></div>
-    <div class="volumeProgressBarBg"></div>
-    <div class="volumeProgressBar"></div>
+    <div class="muteButton on"
+      v-if="isSound"
+      v-on:click="toogleSound"
+    ></div>
+    <div class="muteButton off"
+      v-else
+      v-on:click="toogleSound"
+    ></div>
+    <div class="volumeProgressBarBg"
+        ref="volBlock"
+        v-on:click="changeVolume($event)"
+    ><div class="volumeProgressBar"
+        :style="{ width: setVolume(vol) }"
+      ></div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +34,7 @@ import { default as playList } from "@/assets/json/playListData.js";
 
 export default {
   name: "Audio Control",
+  emits: ["newVol"],
   props: {
     playNum: Number,
     curTime: Number,
@@ -29,14 +42,20 @@ export default {
   data() {
     return {
       trackTitle: String,
+      vol: 0.3,
+      isSound: true,
       playList,
+      translateX: Number,
+      volWidth: Number,
     }
   },
   components: {
-    playList
+    playList,
   },
   mounted() {
-    this.playList = playList
+    this.playList = playList;
+    const volWidth = this.$refs.volBlock.clientWidth;
+      this.volWidth = volWidth;
   },
   methods: {
     convertTime: function(dur) {
@@ -45,8 +64,22 @@ export default {
       return (sec < 10) ? (min + ":0" + sec) : (dur =  min + ":" + sec);
     },
     setAudioProgress: function(time) {
-      return time / playList[this.playNum].duration * 100 + "%"
-    }
+      return time / playList[this.playNum].duration * 100 + "%";
+    },
+    toogleSound: function() {
+      this.isSound = !this.isSound;
+      this.vol = (this.isSound === false) ? 0 : 0.3;
+    },
+    changeVolume: function(event) {
+      this.translateX = event.offsetX;
+      this.vol = this.translateX / this.volWidth;
+      this.isSound = true;
+      this.setVolume();
+    },
+    setVolume: function() {
+      this.$emit("newVol",{ vol: this.vol });
+      return this.vol * 100 + "%";
+    },
   },
 }
 </script>

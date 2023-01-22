@@ -19,6 +19,7 @@
       <audioControl
         :playNum="playNum"
         :curTime="curTime"
+        @newVol="updVol"
       />
       <trackList/>
   </div>
@@ -37,11 +38,12 @@ export default {
       playNum: 0,
       track: new Audio(),
       isPlay: false,
-      curTime: 0
+      curTime: 0,
+      vol: Number,
     }
   },
   components: {
-    trackList, playListData, audioControl
+    trackList, playListData, audioControl,
   },
   mounted() {
       setInterval(() => this.updTime(this.track), 500);
@@ -71,6 +73,10 @@ export default {
     updTime: function(track) {
       let curTime = track.currentTime;
       this.curTime = Math.floor(curTime);
+      if (this.curTime >= track.duration) { this.nextTrack() }
+    },
+    updVol: function(vol) {
+      this.track.volume = vol.vol
     }
   }
 }
