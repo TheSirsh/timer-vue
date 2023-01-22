@@ -16,7 +16,10 @@
         v-on:click="nextTrack"
       ></button>
     </div>
-      <audioControl :playNum="playNum"/>
+      <audioControl
+        :playNum="playNum"
+        :curTime="curTime"
+      />
       <trackList/>
   </div>
 </template>
@@ -34,10 +37,14 @@ export default {
       playNum: 0,
       track: new Audio(),
       isPlay: false,
+      curTime: 0
     }
   },
   components: {
     trackList, playListData, audioControl
+  },
+  mounted() {
+      setInterval(() => this.updTime(this.track), 500);
   },
   methods: {
     playTrack: function() {
@@ -60,6 +67,10 @@ export default {
       this.track.currentTime = 0;
       this.playTrack();
       this.isPlay = true;
+    },
+    updTime: function(track) {
+      let curTime = track.currentTime;
+      this.curTime = Math.floor(curTime);
     }
   }
 }
