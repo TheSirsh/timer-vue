@@ -2,7 +2,10 @@
   <div class="trackTitle">
     <span class="trackName">{{playList[playNum].title}}</span>
   </div>
-  <div class="audioProgressBarBg">
+  <div class="audioProgressBarBg"
+    ref="audioBlock"
+    v-on:click="changeAudio($event)"
+  >
     <div class="audioProgressBar"
       :style="{width: setAudioProgress(curTime)}"
     ></div>
@@ -34,7 +37,7 @@ import { default as playList } from "@/assets/json/playListData.js";
 
 export default {
   name: "Audio Control",
-  emits: ["newVol"],
+  emits: ["newVol", "newCurTime", ],
   props: {
     playNum: Number,
     curTime: Number,
@@ -46,6 +49,7 @@ export default {
       isSound: true,
       playList,
       translateX: Number,
+      audioWidth: Number,
       volWidth: Number,
     }
   },
@@ -54,8 +58,8 @@ export default {
   },
   mounted() {
     this.playList = playList;
-    const volWidth = this.$refs.volBlock.clientWidth;
-      this.volWidth = volWidth;
+    this.updateVolumeWidth();
+    this.updateAudioWidth();
   },
   methods: {
     convertTime: function(dur) {
@@ -70,7 +74,14 @@ export default {
       this.isSound = !this.isSound;
       this.vol = (this.isSound === false) ? 0 : 0.3;
     },
+    changeAudio: function(event) {
+      this.updateAudioWidth();
+      this.translateX = event.offsetX;
+      const curTime = this.translateX / this.audioWidth * playList[this.playNum].duration
+      this.$emit("newCurTime", {curTime: curTime})
+    },
     changeVolume: function(event) {
+      this.updateVolumeWidth();
       this.translateX = event.offsetX;
       this.vol = this.translateX / this.volWidth;
       this.isSound = true;
@@ -80,6 +91,14 @@ export default {
       this.$emit("newVol",{ vol: this.vol });
       return this.vol * 100 + "%";
     },
+    updateAudioWidth: function() {
+      const audioWidth = this.$refs.audioBlock.clientWidth;
+      this.audioWidth = audioWidth;
+    },
+    updateVolumeWidth: function() {
+      const volWidth = this.$refs.volBlock.clientWidth;
+      this.volWidth = volWidth;
+    }
   },
 }
 </script>
@@ -95,6 +114,7 @@ export default {
 
   .audioProgressBar {
     width: 0%;
+    max-width: 100%;
     height: 10px;
     background-color: #C5B358;
   }

@@ -20,6 +20,7 @@
         :playNum="playNum"
         :curTime="curTime"
         @newVol="updVol"
+        @newCurTime="newTime"
       />
       <trackList/>
   </div>
@@ -73,10 +74,13 @@ export default {
     updTime: function(track) {
       let curTime = track.currentTime;
       this.curTime = Math.floor(curTime);
-      if (this.curTime >= track.duration) { this.nextTrack() }
+      if (curTime >= track.duration) { this.nextTrack() }
     },
     updVol: function(vol) {
-      this.track.volume = vol.vol
+      this.track.volume = vol.vol;
+    },
+    newTime: function(time) {
+      this.track.currentTime = time.curTime;
     }
   }
 }
