@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {default as quoteList} from "@/assets/json/quotes.js"
+import {default as quoteList} from "@/assets/json/quotes.js";
 
 export default {
   name: "Quotes",
@@ -48,7 +48,7 @@ export default {
   .quote-block {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 60%;
     height: 30vh;
@@ -68,7 +68,7 @@ export default {
     opacity: .8;
     cursor: pointer;
     transition: .3s;   margin-bottom: calc(100vw / 34.13);
-    background-image: url("../assets/svg/reload.svg");  
+    background-image: url("../../assets/svg/reload.svg");  
   }
 
   .quote {

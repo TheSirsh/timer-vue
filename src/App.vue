@@ -4,21 +4,21 @@
     <clock/>
     <date/>
     <greetings/>
-    <quotes/>
+    <bottomSection/>
   </div>
 </template>
 
 <script>
-import upperSection from "@/components/header/upperSection.vue"
-import clock from "@/components/clock.vue"
-import date from "@/components/date.vue"
-import greetings from "@/components/greetings.vue"
-import quotes from "@/components/quotes.vue"
+import upperSection from "@/components/header/upperSection.vue";
+import clock from "@/components/clock.vue";
+import date from "@/components/date.vue";
+import greetings from "@/components/greetings.vue";
+import bottomSection from "@/components/footer/bottomSection.vue"
 
 export default {
   name: '#app',
   components: {
-    upperSection, clock, date, greetings, quotes
+    upperSection, clock, date, greetings, bottomSection,
   }
 }
 </script>
