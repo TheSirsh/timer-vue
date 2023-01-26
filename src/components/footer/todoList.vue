@@ -2,17 +2,18 @@
   <div class="todoMain">
      <div class="todo">
         <h2 class="todoHead">TodoList</h2>
-        <div class="enterActivity">
-          <input type="text" class="todoInput" placeholder="Enter ToDo">
-          <span class="todoAdd">Add</span>
-          </div>
+        <form class="enterActivity" @submit.prevent="onSubmit">
+          <input type="text" class="todoInput" placeholder="Enter ToDo" v-model="submitTitle">
+          <button class="todoAdd">Add</button>
+        </form>
        </div>
        <ul class="todoList"
       >
         <toDoItem
-          v-on:remove-todo="removeTodo"
-          v-for="todo of todos"
+          v-on:remove-todo="removeTodo" 
+          v-for="(todo, i) of todos" :key="todo.id"
           v-bind:todo="todo"
+          v-bind:index="i"
         />
        </ul>
   </div>
@@ -27,7 +28,9 @@ export default {
       todos: [
         {id: 1, title: "Not completed", completed: false},
         {id: 2, title: "Completed", completed: true},
-      ]
+      ],
+      submitTitle: "",
+      index: Number,
     }
   },
   components: {
@@ -36,6 +39,17 @@ export default {
   methods: {
     removeTodo(id) {
       this.todos = this.todos.filter(t => t.id !== id)
+    },
+    onSubmit() {
+      if (this.submitTitle.trim()) {
+        const newTodo = {
+          id: 3,
+          title: this.submitTitle,
+          completed: false,
+        }
+        this.todos.push(newTodo)
+        this.submitTitle = ""
+      }
     }
   }
 }
