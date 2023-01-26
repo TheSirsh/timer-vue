@@ -8,6 +8,7 @@
         </form>
        </div>
        <ul class="todoList"
+        v-if="todos.length"
       >
         <toDoItem
           v-on:remove-todo="removeTodo" 
@@ -16,6 +17,7 @@
           v-bind:index="i"
         />
        </ul>
+       <p v-else>No todos!</p>
   </div>
 </template>
 
