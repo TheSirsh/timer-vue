@@ -8,7 +8,7 @@
 
 <script>
 import quotes from "@/components/footer/quotes.vue";
-import toDo from "@/components/footer/todoList.vue"
+import toDo from "@/components/footer/toDoList.vue"
 
 export default {
   data() {

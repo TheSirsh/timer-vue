@@ -7,15 +7,35 @@
           <span class="todoAdd">Add</span>
           </div>
        </div>
-       <ul class="todoList"></ul>
+       <ul class="todoList"
+      >
+        <toDoItem
+          v-on:remove-todo="removeTodo"
+          v-for="todo of todos"
+          v-bind:todo="todo"
+        />
+       </ul>
   </div>
 </template>
 
 <script>
+import toDoItem from "@/components/footer/toDoItem.vue";
+
 export default {
   data() {
     return {
-
+      todos: [
+        {id: 1, title: "Not completed", completed: false},
+        {id: 2, title: "Completed", completed: true},
+      ]
+    }
+  },
+  components: {
+    toDoItem,
+  },
+  methods: {
+    removeTodo(id) {
+      this.todos = this.todos.filter(t => t.id !== id)
     }
   }
 }
@@ -51,28 +71,6 @@ export default {
   .todoAdd:hover {
     cursor: pointer;
     color: black;
-  }
-
-  .todoActivity {
-    font-size: calc(100vw / 80);
-    list-style: none;
-    text-align: left;
-    margin-top: 5px;
-    opacity: 0.5;
-  }
-
-  .todoActivity:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
-
-  .done {
-    text-decoration: line-through;
-  }
-
-  .done:hover {
-    cursor:  pointer;
-    opacity: 1;
   }
 
   .todoInput {
