@@ -13,7 +13,7 @@ import upperSection from "@/components/header/upperSection.vue";
 import clock from "@/components/clock.vue";
 import date from "@/components/date.vue";
 import greetings from "@/components/greetings.vue";
-import bottomSection from "@/components/footer/bottomSection.vue"
+import bottomSection from "@/components/footer/bottomSection.vue";
 
 export default {
   name: '#app',

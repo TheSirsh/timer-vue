@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div></div>
+    <settings/>
     <quotes/>
     <toDo/>
   </footer>
@@ -8,7 +8,8 @@
 
 <script>
 import quotes from "@/components/footer/quotes.vue";
-import toDo from "@/components/footer/toDoList.vue"
+import toDo from "@/components/footer/toDoList.vue";
+import settings from "@/components/footer/settings.vue";
 
 export default {
   data() {
@@ -17,7 +18,7 @@ export default {
     }
   },
   components: {
-    quotes, toDo,
+    settings, quotes, toDo,
   }
 }
 </script>
