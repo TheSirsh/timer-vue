@@ -3,7 +3,7 @@ export default {
   weatherError: "The city is not found",
   months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"],
   daysName: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-  greetings: "Good",
+  greetings: "Good ",
   dayParts: ["Night", "Morning", "Afternoon", "Evening"],
   greetingsPlaceholder: "Enter your name",
   todoTitle: "ToDo list",

@@ -5,12 +5,14 @@
 </template>
 
 <script>
+import { default as EN } from "@/assets/json/langEN";
+
 export default {
   name: "Date",
   data() {
     return {
-      months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"],
-      daysName: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      months: [],
+      daysName: [],
       curMonth: Number,
       curDay: Number,
       curDateNum: Number,
@@ -19,6 +21,8 @@ export default {
     mounted() {
       this.setDate()
       setInterval(() => this.setDate(), 500);
+      this.months = EN.months;
+      this.daysName = EN.months;
     },
   methods: {
     setDate() {

@@ -1,23 +1,31 @@
 <template>
     <div class="greeting-container">
       <span class="greeting">
-        Good {{ dayParts[curDayPart] }},
+        {{ greetings }}{{ dayParts[curDayPart] }},
       </span>
-      <input type="text" class="name" placeholder="Enter your name"
+      <input type="text" class="name"
+        v-bind:placeholder="placeholder"
       />
     </div>
 </template>
 
 <script>
+import { default as EN } from "@/assets/json/langEN";
+
 export default {
   name : "Greetings",
   data() {
     return {
-      dayParts: ["Night", "Morning", "Afternoon", "Evening"],
+      greetings: "",
+      dayParts: [],
       curDayPart: Number,
+      placeholder: "",
     }
   },
   mounted() {
+    this.dayParts = EN.dayParts;
+    this.greetings = EN.greetings;
+    this.placeholder = EN.greetingsPlaceholder;
     this.setGreetings();
     setInterval(() => this.setGreetings(), 1000);
   },

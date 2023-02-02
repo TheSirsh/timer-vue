@@ -1,10 +1,14 @@
 <template>
   <div class="todoMain">
      <div class="todo">
-        <h2 class="todoHead">TodoList</h2>
+        <h2 class="todoHead">
+          {{ title }}
+        </h2>
         <form class="enterActivity" @submit.prevent="onSubmit">
-          <input type="text" class="todoInput" placeholder="Enter ToDo" v-model="submitTitle">
-          <button class="todoAdd">Add</button>
+          <input type="text" class="todoInput" v-bind:placeholder="placeholder" v-model="submitTitle">
+          <button class="todoAdd">
+            {{ button }}
+          </button>
         </form>
        </div>
        <ul class="todoList"
@@ -23,20 +27,27 @@
 
 <script>
 import toDoItem from "@/components/footer/toDoItem.vue";
+import { default as EN } from "@/assets/json/langEN";
 
 export default {
   data() {
     return {
-      todos: [
-        {id: 1, title: "Not completed", completed: false},
-        {id: 2, title: "Completed", completed: true},
-      ],
+      title: "",
+      button: "",
+      placeholder: "",
+      todos: [],
       submitTitle: "",
       index: Number,
     }
   },
   components: {
     toDoItem,
+  },
+  mounted() {
+    this.title = EN.todoTitle;
+    this.button = EN.todoButton;
+    this.placeholder = EN.todoPlaceholder;
+    this.todos = EN.todos;
   },
   methods: {
     removeTodo(id) {

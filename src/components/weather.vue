@@ -1,10 +1,13 @@
 <template>
   <div class="weather-block">
-    <input type="text" class="city" placeholder="Saint Petersburg"
+    <input type="text" class="city" 
       v-model="city"
       v-on:change="changeCity"
+      v-bind:placeholder="placeholder"
     />
-    <div class="weather-error" v-if="err">City is not defined!</div>
+    <div class="weather-error" v-if="isErr">
+      {{ err }}
+    </div>
     <div class="weather" v-else>
         <i class="weather-icon owf" v-bind:class="iconClass"></i>
         <div class="description-container">
@@ -18,6 +21,8 @@
 </template>
 
 <script>
+import { default as EN } from "@/assets/json/langEN";
+
   export default {
     name: "Weather",
     data() {
@@ -36,8 +41,10 @@
             speed: Number
           }
         },
+        placeholder: "",
+        err: "",
         city: "",
-        err: false,
+        isErr: false,
       }
     },
     computed: {
@@ -47,9 +54,9 @@
           .then(response => {
             if (response.ok){
               response.json().then(json => { this.weatherData = json })
-              this.err = false
+              this.isErr = false
             } else {
-              this.err = true
+              this.isErr = true
             }
           })
       },
@@ -58,9 +65,11 @@
       },
     },
     mounted() {
+      this.placeholder = EN.weatherPlaceholder;
+      this.err = EN.weatherError;
       fetch('https://api.openweathermap.org/data/2.5/weather?q=Saint%20Petersburg&lang=en&appid=a930528912396a5ecf6b0001ff49f152&units=metric')
         .then(response => response.json())
-        .then(json => { this.weatherData = json })
+        .then(json => { this.weatherData = json });
     },
   }
 </script>

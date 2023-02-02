@@ -14,8 +14,8 @@ export default {
   name: "Settings",
   data() {
     return {
-
+      
     }
-  }
+  },
 }
 </script>
