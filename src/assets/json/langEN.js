@@ -17,5 +17,6 @@ export default {
   todos: [
     { id: 1, title: "Not completed", completed: false, },
     { id: 2, title: "Completed", completed: true, },
-  ], 
+  ],
+  noTodos: "No todos!"
 }

@@ -21,7 +21,9 @@
           v-bind:index="i"
         />
        </ul>
-       <p v-else>No todos!</p>
+       <p v-else>
+        {{  noTodos }}
+        </p>
   </div>
 </template>
 
@@ -29,7 +31,6 @@
 import toDoItem from "@/components/footer/toDoItem.vue";
 import { default as EN } from "@/assets/json/langEN";
 import { default as RU } from "@/assets/json/langRU";
-import lang from "@/components/footer/settings.vue";
 
 export default {
   data() {
@@ -39,6 +40,7 @@ export default {
       placeholder: "",
       todos: [],
       submitTitle: "",
+      noTodos: "",
       index: Number,
       lang: String,
       langData: Object,
@@ -72,6 +74,7 @@ export default {
       this.button = obj.todoButton;
       this.placeholder = obj.todoPlaceholder;
       this.todos = obj.todos;
+      this.noTodos = obj.noTodos;
     }
   }
 }

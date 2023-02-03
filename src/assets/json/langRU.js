@@ -18,4 +18,5 @@ export default {
     { id: 1, title: "Не выполнено", completed: false, },
     { id: 2, title: "Выполнено", completed: true, },
   ], 
+  noTodos: "Дел нет!"
 }
