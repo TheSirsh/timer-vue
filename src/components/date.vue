@@ -40,7 +40,7 @@ export default {
     },
     setText(obj) {
       this.months = obj.months;
-      this.daysName = obj.months;
+      this.daysName = obj.daysName;
     }
   }
 }
