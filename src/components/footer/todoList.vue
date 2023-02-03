@@ -28,6 +28,8 @@
 <script>
 import toDoItem from "@/components/footer/toDoItem.vue";
 import { default as EN } from "@/assets/json/langEN";
+import { default as RU } from "@/assets/json/langRU";
+import lang from "@/components/footer/settings.vue";
 
 export default {
   data() {
@@ -38,16 +40,17 @@ export default {
       todos: [],
       submitTitle: "",
       index: Number,
+      lang: String,
+      langData: Object,
     }
   },
   components: {
     toDoItem,
   },
   mounted() {
-    this.title = EN.todoTitle;
-    this.button = EN.todoButton;
-    this.placeholder = EN.todoPlaceholder;
-    this.todos = EN.todos;
+    this.lang = localStorage.getItem("lang");
+    this.langData = (this.lang === "EN") ? (EN) : (RU);
+    this.setText(this.langData);
   },
   methods: {
     removeTodo(id) {
@@ -63,6 +66,12 @@ export default {
         this.todos.push(newTodo)
         this.submitTitle = ""
       }
+    },
+    setText(obj) {
+      this.title = obj.todoTitle;
+      this.button = obj.todoButton;
+      this.placeholder = obj.todoPlaceholder;
+      this.todos = obj.todos;
     }
   }
 }

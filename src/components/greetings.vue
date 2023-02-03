@@ -11,6 +11,7 @@
 
 <script>
 import { default as EN } from "@/assets/json/langEN";
+import { default as RU } from "@/assets/json/langRU";
 
 export default {
   name : "Greetings",
@@ -20,12 +21,14 @@ export default {
       dayParts: [],
       curDayPart: Number,
       placeholder: "",
+      lang: String,
+      langData: Object,
     }
   },
   mounted() {
-    this.dayParts = EN.dayParts;
-    this.greetings = EN.greetings;
-    this.placeholder = EN.greetingsPlaceholder;
+    this.lang = localStorage.getItem("lang");
+    this.langData = (this.lang === "EN") ? (EN) : (RU);
+    this.setText(this.langData);
     this.setGreetings();
     setInterval(() => this.setGreetings(), 1000);
   },
@@ -34,6 +37,11 @@ export default {
       const curHour = new Date().getHours();
         let curDayPart = Math.floor(curHour / 8) + 1
         this.curDayPart = curDayPart
+    },
+    setText(obj) {
+      this.dayParts = obj.dayParts;
+      this.greetings = obj.greetings;
+      this.placeholder = obj.greetingsPlaceholder;
     }
   }
 }

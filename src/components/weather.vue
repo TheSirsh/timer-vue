@@ -22,6 +22,7 @@
 
 <script>
 import { default as EN } from "@/assets/json/langEN";
+import { default as RU } from "@/assets/json/langRU";
 
   export default {
     name: "Weather",
@@ -48,11 +49,13 @@ import { default as EN } from "@/assets/json/langEN";
         windSpeed: "",
         windMeasure: "",
         humidity: "",
+        lang: String,
+        langData: Object,
       }
     },
     computed: {
       changeCity: function() {
-        let url = "https://api.openweathermap.org/data/2.5/weather?q=" + this.city + "&lang=en&appid=a930528912396a5ecf6b0001ff49f152&units=metric"
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&lang=${this.lang}&appid=a930528912396a5ecf6b0001ff49f152&units=metric`
         fetch(url)
           .then(response => {
             if (response.ok){
@@ -68,15 +71,23 @@ import { default as EN } from "@/assets/json/langEN";
       },
     },
     mounted() {
-      this.placeholder = EN.weatherPlaceholder;
-      this.err = EN.weatherError;
-      fetch('https://api.openweathermap.org/data/2.5/weather?q=Saint%20Petersburg&lang=en&appid=a930528912396a5ecf6b0001ff49f152&units=metric')
+      this.lang = localStorage.getItem("lang");
+      this.langData = (this.lang === "EN") ? (EN) : (RU);
+      this.setText(this.langData);
+      
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.placeholder}&lang=${this.lang}&appid=a930528912396a5ecf6b0001ff49f152&units=metric`)
         .then(response => response.json())
         .then(json => { this.weatherData = json });
-      this.windSpeed = EN.weatherWindText;
-      this.windMeasure = EN.weatherWindMeasurement;
-      this.humidity = EN.weatherHumidity;
     },
+    methods: {
+      setText(obj) {
+        this.placeholder = obj.weatherPlaceholder;
+        this.err = obj.weatherError;
+        this.windSpeed = obj.weatherWindText;
+        this.windMeasure = obj.weatherWindMeasurement;
+        this.humidity = obj.weatherHumidity;
+      }
+    }
   }
 </script>
 

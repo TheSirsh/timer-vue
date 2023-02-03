@@ -31,7 +31,7 @@
 <script>
 import trackList from "@/components/header/trackList.vue";
 import { default as playListData } from "@/assets/json/playListData.js";
-import audioControl from "@/components/header/progressBar.vue"
+import audioControl from "@/components/header/progressBar.vue";
 
 export default {
   name: "audioplayer",

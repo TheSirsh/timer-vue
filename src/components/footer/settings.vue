@@ -17,30 +17,29 @@ import { default as RU } from "@/assets/json/langRU";
 
 export default {
   name: "Settings",
-  data() {
+   data() {
     return {
       title: "",
       langButton: "",
       lang: "EN",
+      langData: Object,
     }
   },
   mounted() {
-    this.langSet(this.lang);
+    this.lang = localStorage.getItem("lang");
+    this.langData = (this.lang === "EN") ? (EN) : (RU);
+    this.setText(this.langData);
   },
   methods: {
     changeLang() {
-      let lang = (this.lang === "EN") ? "RU" : "EN";
-        this.lang = lang;
-        this.langSet(this.lang);
+      this.lang = (this.lang === "EN") ? ("RU") : ("EN");
+      this.langData = (this.lang === "EN") ? (EN) : (RU);
+      localStorage.setItem("lang", this.lang);
+      this.setText(this.langData);
     },
-    langSet(str) {
-      if (str === "EN") {
-        this.title = EN.settingsTitle;
-        this.langButton = EN.settingsLang;
-      } else {
-        this.title = RU.settingsTitle;
-        this.langButton = RU.settingsLang;
-      }
+    setText(obj) {
+      this.title = obj.settingsTitle;
+      this.langButton = obj.settingsLang;
     }
   }
 }

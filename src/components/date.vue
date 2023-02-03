@@ -6,6 +6,7 @@
 
 <script>
 import { default as EN } from "@/assets/json/langEN";
+import { default as RU } from "@/assets/json/langRU";
 
 export default {
   name: "Date",
@@ -16,13 +17,16 @@ export default {
       curMonth: Number,
       curDay: Number,
       curDateNum: Number,
+      lang: String,
+      langData: Object,
     }
   },
     mounted() {
+      this.lang = localStorage.getItem("lang");
+      this.langData = (this.lang === "EN") ? (EN) : (RU);
+      this.setText(this.langData);
       this.setDate()
       setInterval(() => this.setDate(), 500);
-      this.months = EN.months;
-      this.daysName = EN.months;
     },
   methods: {
     setDate() {
@@ -33,6 +37,10 @@ export default {
             this.curDay = curDay;
           let curDateNum = curDate.getDate();
             this.curDateNum  = curDateNum
+    },
+    setText(obj) {
+      this.months = obj.months;
+      this.daysName = obj.months;
     }
   }
 }

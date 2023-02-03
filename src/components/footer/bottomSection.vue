@@ -12,11 +12,6 @@ import toDo from "@/components/footer/toDoList.vue";
 import settings from "@/components/footer/settings.vue";
 
 export default {
-  data() {
-    return {
-
-    }
-  },
   components: {
     settings, quotes, toDo,
   }

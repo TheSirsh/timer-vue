@@ -19,7 +19,7 @@ export default {
       type: Object,
       required: true,
     },
-    index: Number
+    index: Number,
   },
   data() {
     return {
